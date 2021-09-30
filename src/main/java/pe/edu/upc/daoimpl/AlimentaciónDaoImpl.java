@@ -29,9 +29,17 @@ public class AlimentaciónDaoImpl implements IAlimentacionDao,Serializable{
 	@Override
 	public List<Alimentación> listar() {
 		List<Alimentación> lista = new ArrayList<Alimentación>();
-		Query q = em.createQuery("select m from Alimentación a");
+		Query q = em.createQuery("select m from Alimentación m");
 		lista = (List<Alimentación>) q.getResultList();
 		return lista;
+	}
+	
+	@Transactional
+	@Override
+	public void eliminar(int idAlimentacion) {
+		Alimentación alimentacion = new Alimentación();
+		alimentacion= em.getReference(Alimentación.class, idAlimentacion);
+		em.remove(alimentacion);
 	}
 	
 }

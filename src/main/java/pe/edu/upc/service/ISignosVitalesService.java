@@ -8,4 +8,5 @@ public interface ISignosVitalesService {
 
 	public void insertar(SignosVitales signosvitales);
 	public List<SignosVitales> listar();
+	public void eliminar(int idSignosVitales);
 }

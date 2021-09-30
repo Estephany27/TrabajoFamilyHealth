@@ -1,6 +1,5 @@
 package pe.edu.upc.controller;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +14,7 @@ import pe.edu.upc.service.IPacienteService;
 @Named
 @RequestScoped
 
-public class PacienteController implements Serializable {
-
-	private static final long serialVersionUID = 7737846896959936715L;
+public class PacienteController{
 
 	@Inject
 	private IPacienteService paService;
@@ -33,7 +30,7 @@ public class PacienteController implements Serializable {
 	
 	public String nuevoPaciente() {
 		this.setPaciente(new Paciente());
-		return "Paciente.xhtml";
+		return "paciente.xhtml";
 	}
 	
 	public void insertar() {
@@ -50,7 +47,7 @@ public class PacienteController implements Serializable {
 	}
 	
 	public void eliminar(Paciente paciente) {
-		paService.eliminar(paciente. getDni());
+		paService.eliminar(paciente.getIdPaciente());
 		this.listar();
 	}
 

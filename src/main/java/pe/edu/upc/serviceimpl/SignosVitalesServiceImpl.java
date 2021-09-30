@@ -32,5 +32,10 @@ public class SignosVitalesServiceImpl implements ISignosVitalesService, Serializ
 		return svD.listar();
 	}
 
+	@Override
+	public void eliminar(int idSignosVitales) {
+		svD.eliminar(idSignosVitales);
+	}
+
 	
 }

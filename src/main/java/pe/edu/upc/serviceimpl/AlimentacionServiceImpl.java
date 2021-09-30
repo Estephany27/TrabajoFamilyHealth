@@ -32,6 +32,12 @@ public class AlimentacionServiceImpl implements IAlimentacionService, Serializab
 	public List<Alimentación> listar() {
 		return aD.listar();
 	}
+
+	@Override
+	public void eliminar(int idAlimentacion) {
+		aD.eliminar(idAlimentacion);
+		
+	}
 	
 
 }

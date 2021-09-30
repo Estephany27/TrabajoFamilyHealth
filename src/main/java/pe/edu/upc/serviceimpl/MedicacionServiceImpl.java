@@ -31,4 +31,9 @@ public class MedicacionServiceImpl implements IMedicacionService, Serializable{
 		return mD.listar();
 	}
 
+	@Override
+	public void eliminar(int idMedicacion) {
+		mD.eliminar(idMedicacion);
+	}
+
 }

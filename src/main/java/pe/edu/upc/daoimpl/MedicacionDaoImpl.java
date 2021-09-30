@@ -34,6 +34,14 @@ public class MedicacionDaoImpl implements IMedicacionDao,Serializable {
 		lista = (List<Medicacion>) q.getResultList();
 		return lista;
 	}
+
+	@Transactional
+	@Override
+	public void eliminar(int idMedicacion) {
+		Medicacion medicacion = new Medicacion();
+		medicacion=em.getReference(Medicacion.class, idMedicacion);
+		em.remove(medicacion);
+	}
 	
 
 }

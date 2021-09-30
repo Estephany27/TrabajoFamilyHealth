@@ -29,7 +29,7 @@ public class PacienteDaoImpl implements IPacienteDao,Serializable {
 	@Override
 	public List<Paciente> listar() {
 		List<Paciente> lista = new ArrayList<Paciente>();
-		Query q = em.createQuery("select m from Paciente p");
+		Query q = em.createQuery("select m from Paciente m");
 		lista= (List<Paciente>) q.getResultList();
 		return lista;
 	}
@@ -38,7 +38,7 @@ public class PacienteDaoImpl implements IPacienteDao,Serializable {
 	@Override
 	public void eliminar(int idPaciente) {
 		Paciente paciente = new Paciente ();
-		paciente= em.getReference(Paciente.class, paciente);
+		paciente= em.getReference(Paciente.class, idPaciente);
 		em.remove(paciente);
 	}
 

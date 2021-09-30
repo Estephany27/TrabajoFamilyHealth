@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Pacientes:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Paciente</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idpaciente" value="Id " styleClass="control-label" />
+			<p:inputText autocomplete="off" id="idpaciente"
+				styleClass="form-control" value="#{pacienteController.paciente.idPaciente}"
+				required="true" />
+				
+			<h:outputLabel for="nombrepaciente" value="Nombre paciente "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="nombrepaciente"
+				styleClass="form-control"
+				value="#{pacienteController.paciente.nombre}" maxlength="35"
+				required="true" />
+				
+				<h:outputLabel for="apellidopaciente" value="Apellido paciente "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="apellidopaciente"
+				styleClass="form-control"
+				value="#{pacienteController.paciente.apellido}" maxlength="35"
+				required="true" />
+				
+				<h:outputLabel for="DNIpaciente" value="DNI paciente "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="DNIpaciente"
+				styleClass="form-control"
+				value="#{pacienteController.paciente.dni}" maxlength="35"
+				required="true" />
+				
+				<h:outputLabel for="camapaciente" value="Cama paciente "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="camapaciente"
+				styleClass="form-control"
+				value="#{pacienteController.paciente.cama}" maxlength="35"
+				required="true" />
+				
+				<h:outputLabel for="saturacionpaciente" value="Saturacion paciente "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="saturacionpaciente"
+				styleClass="form-control"
+				value="#{pacienteController.paciente.saturacion}" maxlength="35"
+				required="true" />
+				
+				<h:outputLabel for="fechaPaciente" value="Fecha "
+				styleClass="control-label" />
+
+			<p:calendar id="fechaPaciente" pattern="dd/MM/yyyy"
+				value="#{pacienteController.paciente.fechaentrada}" showOn="button"
+				timeZone="UTC" required="true">
+			</p:calendar>
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{pacienteController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listPaciente?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listPaciente?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

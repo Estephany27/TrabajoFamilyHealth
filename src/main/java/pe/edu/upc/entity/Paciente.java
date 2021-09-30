@@ -2,6 +2,7 @@ package pe.edu.upc.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -106,6 +107,25 @@ public class Paciente implements Serializable{
 
 	public void setSaturacion(int saturacion) {
 		this.saturacion = saturacion;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellido, cama, dni, fechaentrada, idPaciente, nombre, saturacion);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Paciente other = (Paciente) obj;
+		return Objects.equals(apellido, other.apellido) && cama == other.cama && dni == other.dni
+				&& Objects.equals(fechaentrada, other.fechaentrada) && idPaciente == other.idPaciente
+				&& Objects.equals(nombre, other.nombre) && saturacion == other.saturacion;
 	}
 	
 	

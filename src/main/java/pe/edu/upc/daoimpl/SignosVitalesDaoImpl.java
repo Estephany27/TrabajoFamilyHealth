@@ -29,10 +29,17 @@ public class SignosVitalesDaoImpl implements ISignosVitalesDao,Serializable{
 	@Override
 	public List<SignosVitales> listar() {
 		List<SignosVitales> lista = new ArrayList<SignosVitales>();
-		Query q =em.createQuery("select m from SignosVitales sv");
+		Query q =em.createQuery("select m from SignosVitales m");
 		lista = (List<SignosVitales>) q.getResultList();
 		return lista;
 	}
 
+	@Transactional
+	@Override
+	public void eliminar(int idSignosVitales) {
+		SignosVitales signosvitales = new SignosVitales();
+		signosvitales=em.getReference(SignosVitales.class, idSignosVitales);
+		em.remove(signosvitales);
+	}
 	
 }

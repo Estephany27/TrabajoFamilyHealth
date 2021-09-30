@@ -2,12 +2,15 @@ package pe.edu.upc.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,17 +34,23 @@ public class SignosVitales implements Serializable{
 	
 	private Date fechaMedicion;
 
+	@ManyToOne
+	@JoinColumn(name="idPaciente",nullable=false)
+	private Paciente paciente;
+
 	public SignosVitales() {
 		super();
 	}
 
-	public SignosVitales(int idSignosVitales, int saturacion, int presion, float temperatura, Date fechaMedicion) {
+	public SignosVitales(int idSignosVitales, int saturacion, int presion, float temperatura, Date fechaMedicion,
+			Paciente paciente) {
 		super();
 		this.idSignosVitales = idSignosVitales;
 		this.saturacion = saturacion;
 		this.presion = presion;
 		this.temperatura = temperatura;
 		this.fechaMedicion = fechaMedicion;
+		this.paciente = paciente;
 	}
 
 	public int getIdSignosVitales() {
@@ -83,8 +92,34 @@ public class SignosVitales implements Serializable{
 	public void setFechaMedicion(Date fechaMedicion) {
 		this.fechaMedicion = fechaMedicion;
 	}
-	
-	
-	
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(fechaMedicion, idSignosVitales, paciente, presion, saturacion, temperatura);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SignosVitales other = (SignosVitales) obj;
+		return Objects.equals(fechaMedicion, other.fechaMedicion) && idSignosVitales == other.idSignosVitales
+				&& Objects.equals(paciente, other.paciente) && presion == other.presion
+				&& saturacion == other.saturacion
+				&& Float.floatToIntBits(temperatura) == Float.floatToIntBits(other.temperatura);
+	}
+		
 	
 }

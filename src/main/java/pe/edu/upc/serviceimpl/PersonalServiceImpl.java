@@ -23,6 +23,5 @@ public class PersonalServiceImpl implements IPersonalService, Serializable {
 	@Override
 	public void insertar(Personal personal) {
 		pD.insertar(personal);
-		
 	}
 }

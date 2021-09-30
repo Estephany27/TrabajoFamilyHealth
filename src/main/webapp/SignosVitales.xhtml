@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de SignosVitales:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>SignosVitales</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idsignosvitales" value="Id " styleClass="control-label" />
+			<p:inputText autocomplete="off" id="idsignosvitales"
+				styleClass="form-control" value="#{signosVitalesController.signosvitales.idSignosVitales}"
+				required="true" />
+				
+				<p:outputLabel for="cboPaciente" value="Paciente" />
+			
+			<p:selectOneMenu id="cboPaciente" value="#{signosVitalesController.signosvitales.paciente}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItems value="#{signosVitalesController.listaPaciente}" var="sv" 
+					 	itemLabel="#{sv.nombre}" itemValue="#{sv}"/>			
+			</p:selectOneMenu>
+				
+				<br></br>
+				
+			<h:outputLabel for="saturacionsignosvitales" value="Saturacion"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="saturacionsignosvitales"
+				styleClass="form-control"
+				value="#{signosVitalesController.signosvitales.saturacion}" maxlength="35"
+				required="true" />
+				
+				<h:outputLabel for="presionsignosvitales" value="Presión"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="presionsignosvitales"
+				styleClass="form-control"
+				value="#{signosVitalesController.signosvitales.presion}" maxlength="35"
+				required="true" />
+				
+				<h:outputLabel for="temperaturasignosvitales" value="Temperatura"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="temperaturasignosvitales"
+				styleClass="form-control"
+				value="#{signosVitalesController.signosvitales.temperatura}" maxlength="35"
+				required="true" />
+				
+				<h:outputLabel for="fechaMedicion" value="Fecha de Medición"
+				styleClass="control-label" />
+
+			<p:calendar id="fechaMedicion" pattern="dd/MM/yyyy"
+				value="#{signosVitalesController.signosvitales.fechaMedicion}" showOn="button"
+				timeZone="UTC" required="true">
+			</p:calendar>
+
+
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{signosVitalesController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listSignosVitales?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listSignosVitales?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
